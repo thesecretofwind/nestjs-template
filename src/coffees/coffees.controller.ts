@@ -12,6 +12,8 @@ import {
   Res,
 } from '@nestjs/common';
 import { CoffeesService } from './coffees.service';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { CreateCoffeeDto } from './dto/create-coffee.dto';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -31,12 +33,12 @@ export class CoffeesController {
   // 传递过来一个json对象，@body装饰器里没有对应属性则是全部获取，里面有属性名则是获取对应的属性如@Body('name') name: any
   @Post()
   @HttpCode(HttpStatus.GONE) // 这个请求即使处理成功也是会返回该状态码
-  creat(@Body() body: any) {
+  creat(@Body() body: CreateCoffeeDto) {
     return this.coffeeService.create(body);
   }
 
   @Patch('/:id')
-  pacth(@Param('id') id: string, @Body() body) {
+  pacth(@Param('id') id: string, @Body() body: UpdateCoffeeDto) {
     return this.coffeeService.update(+id, body);
   }
 
