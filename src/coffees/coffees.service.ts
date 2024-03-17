@@ -41,4 +41,3 @@ export class CoffeesService {
     this.coffees = this.coffees.filter((coffee) => coffee.id !== id);
   }
 }
-
