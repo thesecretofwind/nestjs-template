@@ -21,7 +21,7 @@ export class CoffeesService {
 
   findAll() {
     // return this.coffees;
-    return this.coffeeRespository.find();
+    return this.coffeeRespository.find({relations: ['Flovar']});
   }
 
   async findOne(id: string) {

@@ -13,7 +13,7 @@ export class Coffee extends BaseEntity {
   brand: string;
 
   // @Column({nullable: true}) // 这是定义列的，我们要改造成多表连接的形式，即连接Flovar表，里面每个元素都是Flovar表的id
-  @JoinTable()
   @ManyToMany(type => Flovar, flovar => flovar.coffees)
+  @JoinTable()
   flovars: string[];
 }
