@@ -26,31 +26,32 @@ export class CoffeesController {
 
   // 获取动态参数params，比如/coffees/1即使获取id为1
   @Get('/:id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
+    console.log(id)
     return this.coffeeService.findOne(id);
   }
 
   // 传递过来一个json对象，@body装饰器里没有对应属性则是全部获取，里面有属性名则是获取对应的属性如@Body('name') name: any
   @Post()
-  @HttpCode(HttpStatus.GONE) // 这个请求即使处理成功也是会返回该状态码
-  creat(@Body() body: CreateCoffeeDto) {
-    console.log(body instanceof CreateCoffeeDto);
+ // @HttpCode(HttpStatus.GONE) // 这个请求即使处理成功也是会返回该状态码
+  create(@Body() body: CreateCoffeeDto) {
+    console.log(body,body instanceof CreateCoffeeDto);
     return this.coffeeService.create(body);
   }
 
   @Patch('/:id')
-  pacth(@Param('id') id: number, @Body() body: UpdateCoffeeDto) {
+  pacth(@Param('id') id: string, @Body() body: UpdateCoffeeDto) {
     return this.coffeeService.update(id, body);
   }
 
   @Delete('/:id')
-  delete(@Param('id') id: number) {
+  delete(@Param('id') id: string) {
     return this.coffeeService.remove(id);
   }
 
-  @Get()
-  findAllCoffees(@Query() query): string {
-    const { limit, offset } = query;
-    return `findAllCoffees: limit: ${limit}: offfset:${offset}`;
-  }
+  // @Get()
+  // findAllCoffees(@Query() query): string {
+  //   const { limit, offset } = query;
+  //   return `findAllCoffees: limit: ${limit}: offfset:${offset}`;
+  // }
 }
