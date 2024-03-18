@@ -12,6 +12,9 @@ async function bootstrap() {
       // transform: true,
       // 如果存在非dto定义的属性,则抛出错误
       // forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }),
   );
   await app.listen(3000);

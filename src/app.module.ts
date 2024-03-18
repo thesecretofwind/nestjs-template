@@ -3,26 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { CoffeesModule } from './coffees/coffees.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Coffee } from './coffees/entities/coffee.entity';
-import { Flovar } from './coffees/entities/flovar.entity';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
     CoffeesModule,
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      host: 'localhost',
-      port: 27017,
-      database: 'nest_base',
-      // entities: [
-      //   'entities/*.ts'
-      // ],
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      synchronize: true,
-      entities: [Coffee, Flovar],
-    }),
+    MongooseModule.forRoot('mongodb://localhost:27017/nest_base'),
   ],
   controllers: [AppController],
   providers: [AppService],

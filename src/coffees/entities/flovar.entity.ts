@@ -1,13 +1,5 @@
 import { ObjectId } from 'mongodb';
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  Index,
-  ManyToMany,
-  ObjectIdColumn,
-} from 'typeorm';
-import { Coffee } from './coffee.entity';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class Flovar {
