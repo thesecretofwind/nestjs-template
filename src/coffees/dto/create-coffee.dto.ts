@@ -1,5 +1,7 @@
 // import { IsString } from 'class-validator';
 
+import { Flovar } from "../entities/flovar.entity";
+
 export class CreateCoffeeDto {
   // @IsString()
   readonly name: string;

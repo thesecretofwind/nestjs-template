@@ -1,18 +1,16 @@
 import { ObjectId } from 'mongodb';
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, ObjectIdColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Coffee } from './coffee.entity';
 
 @Entity()
 export class Flovar {
-  @ObjectIdColumn()
-  _id: ObjectId;
+ 
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   name: string;
 
-  //   @ManyToMany(() => Coffee, (coffee) => coffee.flovars)
-  //   coffees: Coffee[];
-  constructor(id: ObjectId, name: string) {
-    this._id = id;
-    this.name = name;
-  }
+  @ManyToMany(() => Coffee, (coffee) => coffee.flovars)
+  coffees: Coffee[];
 }

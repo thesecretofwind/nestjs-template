@@ -11,7 +11,7 @@ import {
 import { CoffeesService } from './coffees.service';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
-import { PaginationQueryDto } from './dto/pagination-query.dto';
+import { PaginationQueryDto } from '../common/pagination-query.dto';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -24,7 +24,7 @@ export class CoffeesController {
 
   // 获取动态参数params，比如/coffees/1即使获取id为1
   @Get('/:id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     console.log(id);
     return this.coffeeService.findOne(id);
   }
@@ -38,12 +38,12 @@ export class CoffeesController {
   }
 
   @Patch('/:id')
-  pacth(@Param('id') id: string, @Body() body: UpdateCoffeeDto) {
+  pacth(@Param('id') id: number, @Body() body: UpdateCoffeeDto) {
     return this.coffeeService.update(id, body);
   }
 
   @Delete('/:id')
-  delete(@Param('id') id: string) {
+  delete(@Param('id') id: number) {
     return this.coffeeService.remove(id);
   }
 
