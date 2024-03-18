@@ -1,5 +1,6 @@
-import { IsString } from 'class-validator';
+// import { IsString } from 'class-validator';
 
+import { Flovar } from '../entities/flovar.entity';
 
 export class CreateCoffeeDto {
   // @IsString()
@@ -7,5 +8,5 @@ export class CreateCoffeeDto {
   // @IsString()
   readonly brand: string;
   // @IsString({ each: true })
-  readonly flovars: string[];
+  readonly flovars: Flovar[];
 }

@@ -8,7 +8,8 @@ import { Coffee } from './coffees/entities/coffee.entity';
 import { Flovar } from './coffees/entities/flovar.entity';
 
 @Module({
-  imports: [CoffeesModule,
+  imports: [
+    CoffeesModule,
     TypeOrmModule.forRoot({
       type: 'mongodb',
       host: 'localhost',
@@ -20,11 +21,9 @@ import { Flovar } from './coffees/entities/flovar.entity';
       useNewUrlParser: true,
       useUnifiedTopology: true,
       synchronize: true,
-      entities: [
-        Coffee,
-        Flovar
-      ]
-    }) ],
+      entities: [Coffee, Flovar],
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

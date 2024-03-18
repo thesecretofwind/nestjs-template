@@ -3,13 +3,9 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Param,
   Patch,
   Post,
-  Query,
-  Res,
 } from '@nestjs/common';
 import { CoffeesService } from './coffees.service';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -27,15 +23,15 @@ export class CoffeesController {
   // 获取动态参数params，比如/coffees/1即使获取id为1
   @Get('/:id')
   findOne(@Param('id') id: string) {
-    console.log(id)
+    console.log(id);
     return this.coffeeService.findOne(id);
   }
 
   // 传递过来一个json对象，@body装饰器里没有对应属性则是全部获取，里面有属性名则是获取对应的属性如@Body('name') name: any
   @Post()
- // @HttpCode(HttpStatus.GONE) // 这个请求即使处理成功也是会返回该状态码
+  // @HttpCode(HttpStatus.GONE) // 这个请求即使处理成功也是会返回该状态码
   create(@Body() body: CreateCoffeeDto) {
-    console.log(body,body instanceof CreateCoffeeDto);
+    console.log(body, body instanceof CreateCoffeeDto);
     return this.coffeeService.create(body);
   }
 

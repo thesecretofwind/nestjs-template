@@ -17,21 +17,26 @@ export class CoffeesService {
   //   },
   // ];
 
-  constructor(@InjectRepository(Coffee) private readonly coffeeRespository: Repository<Coffee>) {}
+  constructor(
+    @InjectRepository(Coffee)
+    private readonly coffeeRespository: Repository<Coffee>,
+  ) {}
 
   findAll() {
     // return this.coffees;
-    return this.coffeeRespository.find({relations: ['Flovar']});
+    return this.coffeeRespository.find({ relations: ['Flovar'] });
   }
 
   async findOne(id: string) {
     // console.log(id);
-    const name = 'coffee 1'
-    const coffee = await this.coffeeRespository.findOne({where: {
-      _id: new ObjectId(id)
-    }})
+    // const name = 'coffee 1';
+    const coffee = await this.coffeeRespository.findOne({
+      where: {
+        _id: new ObjectId(id),
+      },
+    });
     console.log(coffee);
-    
+
     if (!coffee) {
       // throw new HttpException('xxx', HttpStatus.NOT_FOUND)
       throw new NotFoundException(`coffee ${id} no found`);
@@ -49,16 +54,18 @@ export class CoffeesService {
   async update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
     const coffee = await this.coffeeRespository.preload({
       _id: new ObjectId(id),
-      ...updateCoffeeDto
+      ...updateCoffeeDto,
     });
     if (!coffee) {
-      throw new NotFoundException(`coffee #${id} not found`)
+      throw new NotFoundException(`coffee #${id} not found`);
     }
-    return this.coffeeRespository.save(coffee)
+    return this.coffeeRespository.save(coffee);
   }
 
   async remove(id: string) {
-    const coffee = await this.coffeeRespository.findOne({where: {_id: new ObjectId(id)}});
-    return this.coffeeRespository.remove(coffee)
+    const coffee = await this.coffeeRespository.findOne({
+      where: { _id: new ObjectId(id) },
+    });
+    return this.coffeeRespository.remove(coffee);
   }
 }

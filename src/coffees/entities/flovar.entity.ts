@@ -1,15 +1,26 @@
-import { BaseEntity, Column, Entity, ManyToMany, ObjectId, ObjectIdColumn } from "typeorm";
-import { Coffee } from "./coffee.entity";
+import { ObjectId } from 'mongodb';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  Index,
+  ManyToMany,
+  ObjectIdColumn,
+} from 'typeorm';
+import { Coffee } from './coffee.entity';
 
 @Entity()
-export class Flovar extends BaseEntity {
-
-  @ObjectIdColumn() // 主键，自增长id
+export class Flovar {
+  @ObjectIdColumn()
   _id: ObjectId;
 
   @Column()
   name: string;
 
-  @ManyToMany(type => Coffee, coffee => coffee.flovars)
-  coffees: Coffee[]
+  //   @ManyToMany(() => Coffee, (coffee) => coffee.flovars)
+  //   coffees: Coffee[];
+  constructor(id: ObjectId, name: string) {
+    this._id = id;
+    this.name = name;
+  }
 }
