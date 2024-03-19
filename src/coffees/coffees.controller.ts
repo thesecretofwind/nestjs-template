@@ -13,21 +13,28 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { PaginationQueryDto } from '../common/pagination-query.dto';
 import { Public } from 'src/common/decorators/public.decorator';
+import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
+import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('coffees') // swagger接口分类集合
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
 
+  @ApiForbiddenResponse({description: '403 forbidden'}) // swagger配置接口响应状态及描述
   @Public()
   @Get()
-  async findAll(@Query() paginationQuery: PaginationQueryDto) {
-    await new Promise(resolve => setTimeout(resolve, 4000))
+  async findAll(@Protocol('https') protocol: string,  @Query() paginationQuery: PaginationQueryDto) {
+    console.log('使用的协议是： ', protocol);
+    
+    // await new Promise(resolve => setTimeout(resolve, 4000))
     return this.coffeeService.findAll(paginationQuery);
   }
 
   // 获取动态参数params，比如/coffees/1即使获取id为1
   @Get('/:id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     console.log(id);
     return this.coffeeService.findOne(id);
   }
