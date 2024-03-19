@@ -22,7 +22,7 @@ export class CoffeesService {
     const { limit, offset } = paginationQuery;
     // return this.coffeeModel.find().skip(offset).limit(limit).exec();
     return this.coffeeResposity.find({
-      relations: ['flovars'],
+      relations: ['flovars'], // 着咯的flovars是flovar.entity.ts中的flovars字段 @ManyToMany(() => Coffee)
       skip: offset,
       take: limit,
     });
