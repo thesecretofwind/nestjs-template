@@ -61,7 +61,9 @@ export class CoffeesService {
       const recommendEvent = new this.eventModel({
         name: 'recommend_coffee',
         type: 'coffee',
-        payload: { coffeeId: coffee.id },
+        payload: {
+          coffeeId: coffee.id,
+        },
       });
       await recommendEvent.save({ session });
       await coffee.save({ session });
