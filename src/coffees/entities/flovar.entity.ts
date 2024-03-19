@@ -1,10 +1,8 @@
-import { ObjectId } from 'mongodb';
-import { Column, Entity, ManyToMany, ObjectIdColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Coffee } from './coffee.entity';
 
 @Entity()
 export class Flovar {
- 
   @PrimaryGeneratedColumn()
   id: number;
 

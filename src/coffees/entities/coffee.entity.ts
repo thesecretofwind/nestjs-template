@@ -1,9 +1,14 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Flovar } from "./flovar.entity";
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Flovar } from './flovar.entity';
 
 @Entity()
 export class Coffee {
-
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -13,11 +18,10 @@ export class Coffee {
   @Column()
   brand: string;
 
-  @Column({default: 0})
+  @Column({ default: 0 })
   recommendations: number;
 
-  @ManyToMany(() => Flovar, flovar => flovar.coffees, {cascade: true})
+  @ManyToMany(() => Flovar, (flovar) => flovar.coffees, { cascade: true })
   @JoinTable()
   flovars: Flovar[];
 }
-
