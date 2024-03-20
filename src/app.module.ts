@@ -6,6 +6,7 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonModule } from './common/common.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CommonModule } from './common/common.module';
       synchronize: true,
     }),
     CommonModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
