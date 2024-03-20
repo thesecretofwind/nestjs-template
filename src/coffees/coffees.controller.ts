@@ -22,12 +22,15 @@ import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
 
-  @ApiForbiddenResponse({description: '403 forbidden'}) // swagger配置接口响应状态及描述
+  @ApiForbiddenResponse({ description: '403 forbidden' }) // swagger配置接口响应状态及描述
   @Public()
   @Get()
-  async findAll(@Protocol('https') protocol: string,  @Query() paginationQuery: PaginationQueryDto) {
+  async findAll(
+    @Protocol('https') protocol: string,
+    @Query() paginationQuery: PaginationQueryDto,
+  ) {
     console.log('使用的协议是： ', protocol);
-    
+
     // await new Promise(resolve => setTimeout(resolve, 4000))
     return this.coffeeService.findAll(paginationQuery);
   }

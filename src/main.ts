@@ -25,8 +25,11 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalGuards(new ApiKeyGuard());
 
-  app.useGlobalInterceptors(new WrapResponseInterceptor(), new TimeoutInterceptor());
-  
+  app.useGlobalInterceptors(
+    new WrapResponseInterceptor(),
+    new TimeoutInterceptor(),
+  );
+
   const options = new DocumentBuilder()
     .setTitle('IlvCoffee')
     .setDescription('Coffee application')
@@ -34,8 +37,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
 
-  SwaggerModule.setup('api', app, document)
-  
+  SwaggerModule.setup('api', app, document);
+
   await app.listen(3000);
 }
 bootstrap();
