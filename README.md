@@ -43,3 +43,6 @@ npx typeorm migration:run
 ```
 npx typeorm migration:revert
 ```
+
+### e2e测试须知
+其实e2e测试是对整个应用的测试，最好是使用同类型数据库连接做对应的计算。

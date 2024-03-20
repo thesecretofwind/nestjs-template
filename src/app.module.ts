@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonModule } from './common/common.module';
 import { UserModule } from './user/user.module';
+import { IamModule } from './iam/iam.module';
 
 @Module({
   imports: [
@@ -24,8 +25,10 @@ import { UserModule } from './user/user.module';
     }),
     CommonModule,
     UserModule,
+    IamModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
