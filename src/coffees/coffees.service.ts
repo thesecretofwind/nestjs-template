@@ -6,7 +6,7 @@ import { PaginationQueryDto } from '../common/pagination-query.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { Flovar } from './entities/flovar.entity';
-import { Event } from 'src/event/event.entity';
+import { Event } from '../event/event.entity';
 
 @Injectable()
 export class CoffeesService {

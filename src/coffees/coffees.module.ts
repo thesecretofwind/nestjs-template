@@ -4,7 +4,7 @@ import { CoffeesService } from './coffees.service';
 // import { TypeOrmModule } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 // import { Flovar } from './entities/flovar.entity';
-import { Event } from 'src/event/event.entity';
+import { Event } from '../event/event.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Flovar } from './entities/flovar.entity';
 
